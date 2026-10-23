@@ -74,11 +74,21 @@ export default function CommunityDetailJoyPage() {
     const [eventsLoading, setEventsLoading] = useState(true);
     const [eventsFailed, setEventsFailed] = useState(false);
     const [showAllPast, setShowAllPast] = useState(false);
-       const [chatMessages, setChatMessages] = useState([
-        { id: "1", author: "Priya S.", text: "Anyone going to the build night on Thursday?", time: "2h ago" },
-        { id: "2", author: "Marco D.", text: "Yep! Bringing my hackathon team to plan our project 🚀", time: "1h ago" },
-    ]);
+    const [chatMessages, setChatMessages] = useState<{
+        id: string;
+        author: string;
+        text: string;
+        time: string;
+    }[]>([]);
     const [chatDraft, setChatDraft] = useState("");
+
+    useEffect(() => {
+        setChatMessages([
+            { id: "1", author: "Priya S.", text: "Anyone going to the build night on Thursday?", time: "2h ago" },
+            { id: "2", author: "Marco D.", text: "Yep! Bringing my hackathon team to plan our project 🚀", time: "1h ago" },
+        ]);
+        setChatDraft("");
+    }, [id]);
 
     const handlePostMessage = () => {
         if (!chatDraft.trim()) return;
